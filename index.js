@@ -12,9 +12,16 @@ const reportApiError = (error) => {
 
   let errorHtml = `<p>${error.message}</p><ul>`;
 
-  // some sort of loop nonsense
+  // Based on our exploration, we determined that
+  // fieldProblems will be of form:
+  // {
+  //   field: [problem, problem, problem],
+  //   field: [problem...],
+  //   ...
+  // }
   const fieldProblems = error.response.data.errors;
 
+  // JavaScript is weird about looping through a hash
   Object.keys(fieldProblems).forEach(field => {
     const problems = fieldProblems[field];
     problems.forEach(problem => {
