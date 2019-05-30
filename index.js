@@ -63,9 +63,7 @@ const readPetForm = () => {
   };
 }
 
-const handlePetFormSubmit = (event) => {
-  event.preventDefault();
-
+const addPet = () => {
   const petData = readPetForm();
 
   reportStatus("About to post pet data...");
@@ -83,12 +81,12 @@ const handlePetFormSubmit = (event) => {
     })
 };
 
-
-//
 // OK GO!!!!!
-//
 $(document).ready(() => {
   $('#load').click(loadPets);
 
-  $('#pet-form').submit(handlePetFormSubmit);
+  $('#pet-form').submit((event) => {
+    event.preventDefault();
+    addPet();
+  });
 });
